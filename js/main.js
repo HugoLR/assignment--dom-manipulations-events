@@ -2,6 +2,7 @@
 
 
 /* TASK 1 -- Show/Hide Nav */
+
   document.querySelector('.btn-toggle-menu').innerHTML = "Hide Nav";
   document.querySelector('.btn-toggle-menu').addEventListener('click', function(){
     var menu = document.querySelector('.answer-box nav')
@@ -15,44 +16,54 @@
   })
 
 /* TASK 2 -- Select/Deslect an Icon */
-  function white(e) {
-  e.currentTarget.style.cssText = "color:black;   background:rgb(189, 195, 199);"
-  }
 
-  function black(e) {
-    e.currentTarget.style.cssText = "color:white;   background: #67809F;"
-  }
-  var box = document.querySelectorAll('.option')
+const options = document.querySelectorAll('.option')
 
-    for(var i = 0; i < box.length; i++){
-    box[i].addEventListener('click', white,);
+options.forEach( function(option) {
+  option.addEventListener('click', function(e) {
+    if (e.currentTarget.className === 'option') {
+      e.currentTarget.classList.add('selected')
+    } else {
+      e.currentTarget.classList.remove('selected');
     }
-    for(var i = 0; i < box.length; i++){
-    box[i].addEventListener('click', black,);
-    }
-
-    // document.querySelectorAll('.option').forEch(function(div){
-    //   div.addEventListener('click', function(e){
-    //     if(e.currentTarget.className === 'option') {
-    //       e.currentTarget.classList.add('selected');
-    //     } else {
-    //       e.currentTarget.classList.remove('selected');
-    //     }
-    //   })
-    // })
-
-
-
+  })
+})
 
 /* TASK 3 -- Increase total number*/
-document.querySelectorAll('.point').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var sum = document.querySelector('.total-points');
-    sum.texContent = parseInt(sum.textContent) + parseInt(btn.textContent)
+
+const buttonNumbers = document.querySelectorAll('.point')
+var sum = document.querySelector('.total-points');
+
+buttonNumbers.forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    sum.textContent = parseInt(sum.textContent) + parseInt(btn.textContent)
   })
 })
 
 /* TASK 4 (Adventure Mode)-- Move Item List to List */
 
+const elements0fList = document.querySelectorAll('.individual')
+const firstUl = document.querySelector('.good-standing-list')
+const secondUl = document.querySelector('.probation-list')
+
+elements0fList.forEach(function(element){
+  element.addEventListener('click', function(e){
+    if (e.target.parentNode.className === "good-standing-list"){
+      secondUl.appendChild(element)
+    } else if (e.target.parentNode.className === "probation-list"){
+      firstUl.appendChild(element)
+    }
+  })
+})
 
 /* TASK 5 (Adventure Mode) -- Change Text Background Color From Palette */
+
+const squares = document.querySelectorAll('.palette span')
+var message = document.querySelector('.msg')
+
+squares.forEach(function(square){
+  square.addEventListener('click', function(e){
+    message.classList.remove(message.classList[1])
+    message.classList.add(square.classList[0])
+  })
+})
